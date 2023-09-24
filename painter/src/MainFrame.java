@@ -21,7 +21,6 @@ interface Button {
 
 // 设计一个抽象形状类，并提供 抽象可重写的draw()方法
 abstract class Shape{
-    private Shape shape;
     abstract void draw(Graphics g);
 }
 
@@ -143,11 +142,12 @@ public class MainFrame extends JFrame {
     }
 }
 
+// 具体形状类
 class MyCircle extends Shape {
     @Override
     void draw(Graphics g) {
         g.setColor(Color.ORANGE);
-        g.fillOval(50, 50, 100, 100);
+        g.fillOval(100, 100, 100, 100);
     }
 }
 
@@ -155,7 +155,7 @@ class Rectangle extends Shape {
     @Override
     void draw(Graphics g) {
         g.setColor(Color.PINK);
-        g.fillRect(50, 50, 100, 100);
+        g.fillRect(100, 100, 100, 100);
     }
 }
 
@@ -163,9 +163,9 @@ class Triangle extends Shape {
     @Override
     void draw(Graphics g) {
         Polygon p  = new Polygon();
-        p.addPoint(50, 150);
-        p.addPoint(150, 150);
-        p.addPoint(100, 50);
+        p.addPoint(100, 200);
+        p.addPoint(200, 200);
+        p.addPoint(150, 100);
         g.setColor(Color.BLUE);
         g.fillPolygon(p);
     }
