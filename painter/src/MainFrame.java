@@ -13,6 +13,12 @@ import java.util.List;
  * @date 2023/9/21 8:52
  */
 
+// 定义表示按钮的接口
+interface Button {
+    JButton createButton(String args);
+    void addListener(JButton jButton, ActionListener actionListener);
+}
+
 // 设计一个抽象形状类，并提供 抽象可重写的draw()方法
 abstract class Shape{
     private Shape shape;
@@ -88,16 +94,16 @@ public class MainFrame extends JFrame {
 
         // 创建不同形状对应的按钮
         GoalButton myButton = new GoalButton();
-        JButton circelButton = myButton.createButton("绘制圆形");
+        JButton circleButton = myButton.createButton("绘制圆形");
         JButton rectangleButton = myButton.createButton("绘制矩形");
         JButton triangleButton = myButton.createButton("绘制三角形");
 
-        // 添加监听事件
-        myButton.addListener(circelButton, new ActionListener() {
+        // 添加监听事件,点击按钮时重新绘制
+        myButton.addListener(circleButton, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 绘制图像
-                painter.setGoalShape(new myCircle());
+                painter.setGoalShape(new MyCircle());
             }
         });
         myButton.addListener(rectangleButton, new ActionListener() {
@@ -115,7 +121,7 @@ public class MainFrame extends JFrame {
 
         // 添加按钮面板
         JPanel buttonPanel = new JPanel();
-        buttonPanel.add(circelButton);
+        buttonPanel.add(circleButton);
         buttonPanel.add(rectangleButton);
         buttonPanel.add(triangleButton);
         getContentPane().add(buttonPanel, BorderLayout.SOUTH);
@@ -137,7 +143,7 @@ public class MainFrame extends JFrame {
     }
 }
 
-class myCircle extends Shape {
+class MyCircle extends Shape {
     @Override
     void draw(Graphics g) {
         g.setColor(Color.ORANGE);
